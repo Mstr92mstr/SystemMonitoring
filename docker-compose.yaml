@@ -1,0 +1,33 @@
+services:
+  node-exporter:
+    image: prom/node-exporter:latest
+    ports:
+      - 9100:9100
+    networks: 
+      - internal
+    restart: unless-stopped
+    container_name: node-exporter
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus/prometheus.yaml:/etc/prometheus.yaml:Z
+    ports:
+      - 9090:9090
+    networks: 
+      - internal
+    restart: unless-stopped
+    container_name: prometheus
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - 3000:3000
+    networks: 
+      - internal
+    restart: unless-stopped
+    container_name: grafana
+
+networks:
+  internal:
+    driver: bridge
