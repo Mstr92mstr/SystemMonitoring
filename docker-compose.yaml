@@ -11,7 +11,7 @@ services:
   prometheus:
     image: prom/prometheus:latest
     volumes:
-      - ./prometheus/prometheus.yaml:/etc/prometheus.yaml:Z
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:Z
     ports:
       - 9090:9090
     networks: 
